@@ -1,0 +1,601 @@
+  [1m[35m (3.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (261.3ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (160.9ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (28.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5046584269172401305)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDelivers (20210114223935)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.5ms)[0m  [1m[35mCREATE TABLE "delivers" ("id" bigserial primary key, "compagnie" character varying, "region" character varying, "ville" character varying, "telephone" integer, "logo" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (8.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114223935"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateNotations (20210114224119)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "notations" ("id" bigserial primary key, "nom" character varying, "commentaire" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114224119"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-14 23:18:33.689395"], ["updated_at", "2021-01-14 23:18:33.689395"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5046584269172401305)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2021-01-14 18:23:19 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/sekoudosso/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/sekoudosso/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.8ms | Allocations: 480)
+Completed 200 OK in 24ms (Views: 18.1ms | ActiveRecord: 0.0ms | Allocations: 2630)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-01-14 18:23:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:23:24 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (4.2ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 13ms (Views: 2.3ms | ActiveRecord: 7.0ms | Allocations: 2425)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:23:58 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.5ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.5ms | Allocations: 853)
+
+
+Started GET "/api/delivers" for 127.0.0.1 at 2021-01-14 18:24:32 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/delivers"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/delivers" for 127.0.0.1 at 2021-01-14 18:26:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/delivers"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:27:11 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 838)
+
+
+Started GET "/notation" for 127.0.0.1 at 2021-01-14 18:27:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/notation"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/notations" for 127.0.0.1 at 2021-01-14 18:27:24 -0500
+Processing by NotationsController#index as HTML
+  [1m[36mNotation Load (3.2ms)[0m  [1m[34mSELECT "notations".* FROM "notations"[0m
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+Completed 200 OK in 15ms (Views: 1.5ms | ActiveRecord: 5.4ms | Allocations: 2498)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (8587.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5046584269172401305)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5046584269172401305)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (3.7ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-14 23:43:23.215046"], ["updated_at", "2021-01-14 23:43:23.215046"]]
+  [1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.4ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-14 23:44:11.225244"], ["updated_at", "2021-01-14 23:44:11.225244"]]
+  [1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/notations" for 127.0.0.1 at 2021-01-14 18:44:34 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by NotationsController#index as HTML
+  [1m[36mNotation Load (1.0ms)[0m  [1m[34mSELECT "notations".* FROM "notations"[0m
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+Completed 200 OK in 11ms (Views: 2.1ms | ActiveRecord: 3.9ms | Allocations: 2227)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:44:39 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.8ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 6.9ms | Allocations: 11825)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column notations.deliver_id does not exist
+LINE 1: SELECT "notations".* FROM "notations" WHERE "notations"."del...
+                                                    ^
+):
+  
+app/controllers/delivers_controller.rb:7:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:46:26 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 6.2ms | Allocations: 8295)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column notations.deliver_id does not exist
+LINE 1: SELECT "notations".* FROM "notations" WHERE "notations"."del...
+                                                    ^
+):
+  
+app/controllers/delivers_controller.rb:7:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-14 18:47:33 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 19ms (Views: 10.7ms | ActiveRecord: 5.4ms | Allocations: 7178)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 07:52:46 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (10.8ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 49ms (Views: 30.6ms | ActiveRecord: 10.8ms | Allocations: 1160)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 07:53:33 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.8ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 500 Internal Server Error in 156ms (ActiveRecord: 75.2ms | Allocations: 8303)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column notations.deliver_id does not exist
+LINE 1: SELECT "notations".* FROM "notations" WHERE "notations"."del...
+                                                    ^
+):
+  
+app/controllers/delivers_controller.rb:7:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 07:55:54 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:9:in `index'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 6.6ms | Allocations: 9226)
+
+
+  
+NoMethodError (undefined method `notation' for #<Deliver:0x00007f99a1a971e8>
+Did you mean?  notations
+               notations=):
+  
+app/controllers/delivers_controller.rb:9:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:00:11 -0500
+  
+SyntaxError (/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:50: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/delivers_controller.rb:50: syntax error, unexpected end-of-input, expecting end
+app/controllers/delivers_controller.rb:50: syntax error, unexpected end-of-input, expecting end
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:01:07 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 16ms (Views: 8.1ms | ActiveRecord: 5.5ms | Allocations: 7176)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:01:33 -0500
+  
+SyntaxError (/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:50: syntax error, unexpected end, expecting end-of-input):
+  
+app/controllers/delivers_controller.rb:50: syntax error, unexpected end, expecting end-of-input
+app/controllers/delivers_controller.rb:50: syntax error, unexpected end, expecting end-of-input
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:03:00 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 15ms (Views: 8.1ms | ActiveRecord: 4.7ms | Allocations: 7176)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:03:47 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.3ms | Allocations: 1083)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:04:45 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:9:in `index'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 4.8ms | Allocations: 9188)
+
+
+  
+NoMethodError (undefined method `notation' for #<Deliver:0x00007f999d677be8>
+Did you mean?  notations
+               notations=):
+  
+app/controllers/delivers_controller.rb:9:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:05:09 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:9:in `index'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 9.7ms | Allocations: 8008)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column notations.deliver_id does not exist
+LINE 1: SELECT "notations".* FROM "notations" WHERE "notations"."del...
+                                                    ^
+):
+  
+app/controllers/delivers_controller.rb:9:in `index'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:07:14 -0500
+  
+SyntaxError (/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:11: syntax error, unexpected =>, expecting end
+                    :include => {
+                             ^~
+/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:13: syntax error, unexpected ',', expecting end
+                    },
+                     ^
+/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:15: syntax error, unexpected ')', expecting end
+... => [:updated_at, :created_at]) 
+...                              ^
+/Users/sekoudosso/Development/projects/deliver_api/app/controllers/delivers_controller.rb:52: syntax error, unexpected end-of-input, expecting ')'):
+  
+app/controllers/delivers_controller.rb:11: syntax error, unexpected =>, expecting end
+app/controllers/delivers_controller.rb:13: syntax error, unexpected ',', expecting end
+app/controllers/delivers_controller.rb:15: syntax error, unexpected ')', expecting end
+app/controllers/delivers_controller.rb:52: syntax error, unexpected end-of-input, expecting ')'
+app/controllers/delivers_controller.rb:11: syntax error, unexpected =>, expecting end
+app/controllers/delivers_controller.rb:13: syntax error, unexpected ',', expecting end
+app/controllers/delivers_controller.rb:15: syntax error, unexpected ')', expecting end
+app/controllers/delivers_controller.rb:52: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:08:08 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (3.9ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 7.9ms | ActiveRecord: 10.5ms | Allocations: 7177)
+
+
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:08:54 -0500
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 9.1ms | ActiveRecord: 9.8ms | Allocations: 7143)
+
+
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (92.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (54.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (227.2ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (75.8ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (38.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (37.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (34.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (198.7ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (108.8ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (23.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5046584269172401305)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDelivers (20210114223935)
+  [1m[35m (3.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE TABLE "delivers" ("id" bigserial primary key, "compagnie" character varying, "region" character varying, "ville" character varying, "telephone" integer, "logo" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (5.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114223935"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateNotations (20210114224119)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "notations" ("id" bigserial primary key, "nom" character varying, "commentaire" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114224119"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-15 13:32:30.707949"], ["updated_at", "2021-01-15 13:32:30.707949"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5046584269172401305)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (2.4ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:33:38.104017"], ["updated_at", "2021-01-15 13:33:38.104017"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:33:38.121139"], ["updated_at", "2021-01-15 13:33:38.121139"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.9ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:33:50.756261"], ["updated_at", "2021-01-15 13:33:50.756261"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.4ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:33:50.761655"], ["updated_at", "2021-01-15 13:33:50.761655"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:33:50.765604"], ["updated_at", "2021-01-15 13:33:50.765604"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.9ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:34:12.540020"], ["updated_at", "2021-01-15 13:34:12.540020"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:34:12.554484"], ["updated_at", "2021-01-15 13:34:12.554484"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:34:12.558152"], ["updated_at", "2021-01-15 13:34:12.558152"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "jjj"], ["region", "333"], ["ville", "yakro"], ["telephone", 333], ["logo", ""], ["created_at", "2021-01-15 13:34:12.561648"], ["updated_at", "2021-01-15 13:34:12.561648"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (49.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (44.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (250.7ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (64.4ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (18.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5046584269172401305)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDelivers (20210114223935)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "delivers" ("id" bigserial primary key, "compagnie" character varying, "region" character varying, "ville" character varying, "telephone" integer, "logo" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114223935"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateNotations (20210114224119)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.4ms)[0m  [1m[35mCREATE TABLE "notations" ("id" bigserial primary key, "deliver_id" bigint NOT NULL, "nom" character varying, "commentaire" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e4dd7b64f3"
+FOREIGN KEY ("deliver_id")
+  REFERENCES "delivers" ("id")
+)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_notations_on_deliver_id" ON "notations"  ("deliver_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114224119"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-15 13:44:52.933160"], ["updated_at", "2021-01-15 13:44:52.933160"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5046584269172401305)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (1.1ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:45:00.201711"], ["updated_at", "2021-01-15 13:45:00.201711"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:45:00.216576"], ["updated_at", "2021-01-15 13:45:00.216576"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:45:00.220105"], ["updated_at", "2021-01-15 13:45:00.220105"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "jjj"], ["region", "333"], ["ville", "yakro"], ["telephone", 333], ["logo", ""], ["created_at", "2021-01-15 13:45:00.223658"], ["updated_at", "2021-01-15 13:45:00.223658"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (1.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:45:59.055434"], ["updated_at", "2021-01-15 13:45:59.055434"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:45:59.070018"], ["updated_at", "2021-01-15 13:45:59.070018"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:45:59.073053"], ["updated_at", "2021-01-15 13:45:59.073053"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.2ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "jjj"], ["region", "333"], ["ville", "yakro"], ["telephone", 333], ["logo", ""], ["created_at", "2021-01-15 13:45:59.075967"], ["updated_at", "2021-01-15 13:45:59.075967"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (1.0ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:46:27.472299"], ["updated_at", "2021-01-15 13:46:27.472299"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.4ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:46:27.487597"], ["updated_at", "2021-01-15 13:46:27.487597"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:46:27.491567"], ["updated_at", "2021-01-15 13:46:27.491567"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "jjj"], ["region", "333"], ["ville", "yakro"], ["telephone", 333], ["logo", ""], ["created_at", "2021-01-15 13:46:27.494701"], ["updated_at", "2021-01-15 13:46:27.494701"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mNotation Create (11.1ms)[0m  [1m[32mINSERT INTO "notations" ("deliver_id", "nom", "commentaire", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["deliver_id", 1], ["nom", "Ben"], ["commentaire", "bon servir"], ["created_at", "2021-01-15 13:46:27.528142"], ["updated_at", "2021-01-15 13:46:27.528142"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (34.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_development"[0m
+  [1m[35m (32.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "deliver_api_test"[0m
+  [1m[35m (194.5ms)[0m  [1m[35mCREATE DATABASE "deliver_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (103.1ms)[0m  [1m[35mCREATE DATABASE "deliver_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5046584269172401305)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDelivers (20210114223935)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "delivers" ("id" bigserial primary key, "compagnie" character varying, "region" character varying, "ville" character varying, "telephone" integer, "logo" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114223935"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateNotations (20210114224119)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "notations" ("id" bigserial primary key, "deliver_id" bigint NOT NULL, "nom" character varying, "commentaire" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_e4dd7b64f3"
+FOREIGN KEY ("deliver_id")
+  REFERENCES "delivers" ("id")
+)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_notations_on_deliver_id" ON "notations"  ("deliver_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210114224119"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-15 13:47:35.010294"], ["updated_at", "2021-01-15 13:47:35.010294"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5046584269172401305)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (1.2ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "abs"], ["region", "000"], ["ville", "abj"], ["telephone", 0], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwe2d814d6/images/S5259-005_pulse-canvas-and-leather-sneaker_black-white-blue_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:47:39.314663"], ["updated_at", "2021-01-15 13:47:39.314663"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "qqq"], ["region", "111"], ["ville", "bke"], ["telephone", 111], ["logo", "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dw576dced6/images/S5259-007_pulse-canvas-and-leather-sneaker_black-white-orange_berluti_01.jpg?sw=320"], ["created_at", "2021-01-15 13:47:39.329398"], ["updated_at", "2021-01-15 13:47:39.329398"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "kkk"], ["region", "222"], ["ville", "daloa"], ["telephone", 222], ["logo", ""], ["created_at", "2021-01-15 13:47:39.332938"], ["updated_at", "2021-01-15 13:47:39.332938"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Create (0.3ms)[0m  [1m[32mINSERT INTO "delivers" ("compagnie", "region", "ville", "telephone", "logo", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["compagnie", "jjj"], ["region", "333"], ["ville", "yakro"], ["telephone", 333], ["logo", ""], ["created_at", "2021-01-15 13:47:39.336109"], ["updated_at", "2021-01-15 13:47:39.336109"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Load (0.4ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mNotation Create (1.3ms)[0m  [1m[32mINSERT INTO "notations" ("deliver_id", "nom", "commentaire", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["deliver_id", 1], ["nom", "Ben"], ["commentaire", "bon servir"], ["created_at", "2021-01-15 13:47:39.364705"], ["updated_at", "2021-01-15 13:47:39.364705"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Load (0.2ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mNotation Create (0.4ms)[0m  [1m[32mINSERT INTO "notations" ("deliver_id", "nom", "commentaire", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["deliver_id", 1], ["nom", "jack"], ["commentaire", "moyen servir"], ["created_at", "2021-01-15 13:47:39.371149"], ["updated_at", "2021-01-15 13:47:39.371149"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Load (0.3ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mNotation Create (0.4ms)[0m  [1m[32mINSERT INTO "notations" ("deliver_id", "nom", "commentaire", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["deliver_id", 1], ["nom", "jack"], ["commentaire", "moyen servir"], ["created_at", "2021-01-15 13:47:39.375802"], ["updated_at", "2021-01-15 13:47:39.375802"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDeliver Load (0.2ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mNotation Create (0.4ms)[0m  [1m[32mINSERT INTO "notations" ("deliver_id", "nom", "commentaire", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["deliver_id", 1], ["nom", "Ben"], ["commentaire", "bon servir"], ["created_at", "2021-01-15 13:47:39.380644"], ["updated_at", "2021-01-15 13:47:39.380644"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/delivers" for 127.0.0.1 at 2021-01-15 08:47:54 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DeliversController#index as HTML
+  [1m[36mDeliver Load (0.8ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers"[0m
+  ↳ app/controllers/delivers_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 9.6ms | ActiveRecord: 6.7ms | Allocations: 8266)
+
+
+Started GET "/notations" for 127.0.0.1 at 2021-01-15 08:48:13 -0500
+Processing by NotationsController#index as HTML
+  [1m[36mNotation Load (0.9ms)[0m  [1m[34mSELECT "notations".* FROM "notations"[0m
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+Completed 200 OK in 18ms (Views: 7.7ms | ActiveRecord: 6.0ms | Allocations: 5908)
+
+
+Started GET "/notations" for 127.0.0.1 at 2021-01-15 08:50:49 -0500
+Processing by NotationsController#index as HTML
+  [1m[36mNotation Load (0.3ms)[0m  [1m[34mSELECT "notations".* FROM "notations"[0m
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+  [1m[36mDeliver Load (0.6ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+  [1m[36mCACHE Deliver Load (0.0ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+  [1m[36mCACHE Deliver Load (0.0ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+  [1m[36mCACHE Deliver Load (0.0ms)[0m  [1m[34mSELECT "delivers".* FROM "delivers" WHERE "delivers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/notations_controller.rb:6:in `index'
+Completed 200 OK in 69ms (Views: 0.1ms | ActiveRecord: 21.4ms | Allocations: 16378)
+
+
