@@ -3,13 +3,13 @@ class NotationsController < ApplicationController
 
     def index 
         notations = Notation.all 
-        render json: notations.to_json(
-            :include => {
-                :deliver => {:only => [:compagnie]}
-             },
-            :except => [:updated_at, :created_at])
+        # render json: notations.to_json(
+        #     :include => {
+        #         :deliver => {:only => [:compagnie]}
+        #      },
+        #     :except => [:updated_at, :created_at])
           
-        # render json: notations, except: [:updated_at, :created_at]
+        render json: notations, except: [:updated_at, :created_at]
     end 
   
     def show 
@@ -50,7 +50,7 @@ class NotationsController < ApplicationController
     private 
   
     def notation_params 
-      params.require(:notation).permit(:compagnie, :region, :ville, :telephone, :logo)
+      params.require(:notation).permit(:deliver_id,:nom, :commentaire)
     end 
   
     def find_notation

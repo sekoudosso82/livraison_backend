@@ -3,4 +3,8 @@
 
 require_relative 'config/application'
 
-Rails.application.load_tasks
+Rails.application.load_tasks 
+
+# task "start" => :environment do
+#     system 'rails server -p 3001'
+# end

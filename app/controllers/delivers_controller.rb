@@ -4,8 +4,13 @@ class DeliversController < ApplicationController
     
         def index 
             delivers = Deliver.all 
-            render json: delivers, 
-            except: [:updated_at, :created_at]
+            render json: delivers.to_json(
+                :include => {
+                    :notations => {:only => [:nom, :commentaire]}
+                 },
+                :except => [:updated_at, :created_at])
+            # render json: delivers, 
+            # except: [:updated_at, :created_at]
 
         end
         
